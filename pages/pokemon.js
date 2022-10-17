@@ -10,6 +10,7 @@ export default function Pokemon({data}) {
     const [pokemonName, setPokemonName] = useState(data.name)
 
     // client side rendering way
+    // loading the data after
 
     // const [pokemonName, setPokemonName] = useState(null)
     // const [abilities, setAbilities] = useState([])
@@ -59,6 +60,8 @@ export default function Pokemon({data}) {
 
 // server side rendering way
 // Receive props at build time
+// preloading the data
+// user has data before 
 export async function getStaticProps(){
     const res = await fetch("https://pokeapi.co/api/v2/pokemon/raichu")
     const data = await res.json()
