@@ -6,8 +6,14 @@ import { useState, useEffect } from 'react';
 
 
 export default function Pokemon() {
+    const [pokemonName, setPokemonName] = useState(null)
     useEffect(()=>{
         console.log('pokemon loaded')
+        axios.get('https://pokeapi.co/api/v2/pokemon/steelix')
+        .then((res)=>{
+            console.log(res.data.name)
+            setPokemonName(res.data.name)
+        })
     }, [])
 
 
@@ -22,7 +28,7 @@ export default function Pokemon() {
 
     <h1>Pokemon</h1>
       <p>
-        This is the Pokemon page
+        This is the Pokemon page for {pokemonName}
       </p>
 
      
