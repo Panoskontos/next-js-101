@@ -5,22 +5,26 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
-export default function Pokemon() {
-    const [pokemonName, setPokemonName] = useState(null)
-    const [abilities, setAbilities] = useState([])
+export default function Pokemon({data}) {
 
-    useEffect(()=>{
-        console.log('pokemon loaded')
-        // name
-        axios.get('https://pokeapi.co/api/v2/pokemon/raichu')
-        .then((res)=>{
-            console.log(res.data.name)
-            setPokemonName(res.data.name)
-            setAbilities(res.data.abilities)
-        })
+    const [pokemonName, setPokemonName] = useState(data.name)
 
-        
-    }, [])
+    // client side rendering way
+
+    // const [pokemonName, setPokemonName] = useState(null)
+    // const [abilities, setAbilities] = useState([])
+
+    // useEffect(()=>{
+    //     console.log('pokemon loaded')
+    //     // name
+    //     axios.get('https://pokeapi.co/api/v2/pokemon/raichu')
+    //     .then((res)=>{
+    //         console.log(res.data.name)
+    //         setPokemonName(res.data.name)
+    //         setAbilities(res.data.abilities)
+    //     })
+     
+    // }, [])
 
 
   return (
@@ -39,16 +43,29 @@ export default function Pokemon() {
         {pokemonName}
         </h4>
 
-        <br/>
+        {/* <br/>
         {abilities.length!==0?abilities.map((i)=>{
             return(
                 <div>{i.ability.name}</div>
             )
-        }):<></>}
+        }):<></>} */}
 
       </div>
 
      
     </div>
   )
+}
+
+// server side rendering way
+// Receive props at build time
+export async function getStaticProps(){
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon/raichu")
+    const data = await res.json()
+    
+    return {
+        props:{
+            data
+        }
+    }
 }
