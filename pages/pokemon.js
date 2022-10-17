@@ -7,13 +7,19 @@ import { useState, useEffect } from 'react';
 
 export default function Pokemon() {
     const [pokemonName, setPokemonName] = useState(null)
+    const [abilities, setAbilities] = useState([])
+
     useEffect(()=>{
         console.log('pokemon loaded')
-        axios.get('https://pokeapi.co/api/v2/pokemon/steelix')
+        // name
+        axios.get('https://pokeapi.co/api/v2/pokemon/raichu')
         .then((res)=>{
             console.log(res.data.name)
             setPokemonName(res.data.name)
+            setAbilities(res.data.abilities)
         })
+
+        
     }, [])
 
 
@@ -26,10 +32,21 @@ export default function Pokemon() {
         <meta name="description" content='this is next js'></meta>
       </Head>
 
+      <div>
     <h1>Pokemon</h1>
-      <p>
-        This is the Pokemon page for {pokemonName}
-      </p>
+        This is the Pokemon page for 
+        <h4>
+        {pokemonName}
+        </h4>
+
+        <br/>
+        {abilities.length!==0?abilities.map((i)=>{
+            return(
+                <div>{i.ability.name}</div>
+            )
+        }):<></>}
+
+      </div>
 
      
     </div>
