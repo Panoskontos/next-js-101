@@ -12,10 +12,12 @@ export default function About() {
         <meta name="description" content='this is next js'></meta>
       </Head>
 
-    <h1>About</h1>
+    <h1 style={{color:"grey"}}>About</h1>
       <p>
         This is the about page
       </p>
+      <img src="images/goku.jpg"></img>
+    
 
      
     </div>
