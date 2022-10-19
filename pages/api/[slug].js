@@ -8,5 +8,5 @@ export default (req,res) =>{
     res.status(200).json({ name: 'Panos' })  
   
   }
-  
+   
   // here you connect to a database
