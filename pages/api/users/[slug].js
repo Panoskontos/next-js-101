@@ -5,8 +5,8 @@
 // }
 
 export default (req,res) =>{
-    res.status(200).json({ name: 'Panos' })  
-  
-  }
-  
-  // here you connect to a database
+  res.status(200).json({ name: 'users' })  
+
+}
+
+// here you connect to a database
